@@ -9,6 +9,8 @@ using System.Windows.Shapes;
 using Djambi.Engine;
 using Djambi.Engine.Extensions;
 using Djambi.Model;
+using System.Threading;
+using Djambi.UI.Resources;
 
 namespace Djambi.UI.Pages
 {
@@ -35,23 +37,28 @@ namespace Djambi.UI.Pages
         {
             InitializeComponent();
 
+            Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("es-ES");
             _images = new ImageRepository();
+
+            var resources = ResourceFactory.ResourceService;
+
+            var playerColors = resources.PlayerColors.ToList();
 
             _playerColorBrushes = new Dictionary<PlayerColor, Brush>
             {
-                [PlayerColor.Red] = new SolidColorBrush(Colors.Firebrick),
-                [PlayerColor.Green] = new SolidColorBrush(Colors.ForestGreen),
-                [PlayerColor.Blue] = new SolidColorBrush(Colors.MediumBlue),
-                [PlayerColor.Purple] = new SolidColorBrush(Colors.Purple),
-                [PlayerColor.Dead] = new SolidColorBrush(Colors.Gray)
+                [PlayerColor.Red] = new SolidColorBrush(playerColors[0]),
+                [PlayerColor.Green] = new SolidColorBrush(playerColors[1]),
+                [PlayerColor.Blue] = new SolidColorBrush(playerColors[2]),
+                [PlayerColor.Purple] = new SolidColorBrush(playerColors[3]),
+                [PlayerColor.Dead] = new SolidColorBrush(resources.NeutralPlayerColor)
             };
-            _selectionOptionBrush = new SolidColorBrush(Colors.Yellow);
-            _selectionBrush = new SolidColorBrush(Colors.Green);
-            _boardLabelBrush = new SolidColorBrush(Colors.Silver);
-            _whiteCellBrush = new SolidColorBrush(Colors.White);
-            _blackCellBrush = new SolidColorBrush(Colors.Black);
-            _seatCellBrush = new SolidColorBrush(Colors.Gray);
-            _boardLabelBackgroundBrush = new SolidColorBrush(Color.FromRgb(102, 51, 0)); //Dark brown
+            _selectionOptionBrush = new SolidColorBrush(resources.SelectionOptionHighlightColor);
+            _selectionBrush = new SolidColorBrush(resources.SelectionHighlightColor);
+            _boardLabelBrush = new SolidColorBrush(resources.BorderLabelColor);
+            _boardLabelBackgroundBrush = new SolidColorBrush(resources.BorderLabelBackgroundColor);
+            _whiteCellBrush = new SolidColorBrush(resources.CellColor1);
+            _blackCellBrush = new SolidColorBrush(resources.CellColor2);
+            _seatCellBrush = new SolidColorBrush(resources.CellColorSeat);
 
             DrawBoard();
             RedrawGameState(Controller.GameState);

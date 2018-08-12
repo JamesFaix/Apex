@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Navigation;
+using System.Threading;
 
 namespace Djambi.UI
 {
@@ -11,6 +12,7 @@ namespace Djambi.UI
             InitializeComponent();
             NavigateToMainMenu();
 
+            Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("es-ES");
             var images = new ImageRepository();
             this.Icon = images.AppIcon;
         }

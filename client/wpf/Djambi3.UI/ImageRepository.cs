@@ -1,31 +1,43 @@
 ﻿using System;
 using System.Windows.Media.Imaging;
 using Djambi.Model;
+using Djambi.UI.Resources;
 
 namespace Djambi.UI
 {
     class ImageRepository
     {
-        private static BitmapImage GetImage(string imageName) =>
-            new BitmapImage(new Uri($"/Djambi.UI;component/Images/{imageName}.png", UriKind.Relative));
+        private readonly string _ImagesDirectory;
 
-        public BitmapImage AppIcon { get; } = new BitmapImage(new Uri("pack://application:,,,/Images/chief.png", UriKind.RelativeOrAbsolute));
-        
+        public ImageRepository()
+        {
+            _ImagesDirectory = ResourceFactory.ResourceService.ImagesDirectory;
+
+            Assassin = GetImage("assassin");
+            Chief = GetImage("chief");
+            Diplomat = GetImage("diplomat");
+            Journalist = GetImage("journalist");
+            Thug = GetImage("thug");
+            Undertaker = GetImage("undertaker");
+            Corpse = GetImage("corpse");
+
+            AppIcon = new BitmapImage(new Uri($"pack://application:,,,/Resources/{_ImagesDirectory}/chief.png", UriKind.RelativeOrAbsolute));
+        }
+
+        private BitmapImage GetImage(string imageName) =>
+            new BitmapImage(new Uri($"/Djambi.UI;component/Resources/{_ImagesDirectory}/{imageName}.png", UriKind.Relative));
+
+        public BitmapImage AppIcon { get; }
+
         #region Pieces
 
-        public BitmapImage Assassin { get; } = GetImage("assassin");
-
-        public BitmapImage Chief { get; } = GetImage("chief");
-
-        public BitmapImage Diplomat { get; } = GetImage("diplomat");
-
-        public BitmapImage Journalist { get; } = GetImage("journalist");
-
-        public BitmapImage Thug { get; } = GetImage("thug");
-
-        public BitmapImage Undertaker { get; } = GetImage("undertaker");
-
-        public BitmapImage Corpse { get; } = GetImage("corpse");
+        public BitmapImage Assassin { get; }
+        public BitmapImage Chief { get; }
+        public BitmapImage Diplomat { get; }
+        public BitmapImage Journalist { get; }
+        public BitmapImage Thug { get; }
+        public BitmapImage Undertaker { get; }
+        public BitmapImage Corpse { get; }
 
         public BitmapImage GetPieceImage(Piece piece)
         {

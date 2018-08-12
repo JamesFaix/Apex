@@ -71,6 +71,20 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Resources\Default\ResourceService.cs" />
+    <Compile Include="Resources\HotdogTown\ResourceService.cs" />
+    <Compile Include="Resources\HotdogTown\ResourceStrings.Designer.cs">
+      <DependentUpon>ResourceStrings.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\Default\ResourceStrings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ResourceStrings.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\IResourceService.cs" />
+    <Compile Include="Resources\ResourceFactory.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CellClickedCommand.cs" />
@@ -101,6 +115,14 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Resources\HotdogTown\ResourceStrings.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ResourceStrings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Default\ResourceStrings.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ResourceStrings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -125,17 +147,17 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\assassin.png" />
-    <Resource Include="Images\chief.png" />
-    <Resource Include="Images\thug.png" />
-    <Resource Include="Images\corpse.png" />
-    <Resource Include="Images\journalist.png" />
+    <Resource Include="Resources\Default\assassin.png" />
+    <Resource Include="Resources\Default\chief.png" />
+    <Resource Include="Resources\Default\thug.png" />
+    <Resource Include="Resources\Default\corpse.png" />
+    <Resource Include="Resources\Default\journalist.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\undertaker.png" />
+    <Resource Include="Resources\Default\undertaker.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\diplomat.png" />
+    <Resource Include="Resources\Default\diplomat.png" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\lib\Djambi.Engine\Djambi.Engine.csproj">
@@ -146,6 +168,16 @@
       <Project>{65c86099-ef20-49ba-b37d-f856274d1cd3}</Project>
       <Name>Djambi.Model</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Resources\HotdogTown\Assassin.png" />
+    <Resource Include="Resources\HotdogTown\Chief.png" />
+    <Resource Include="Resources\HotdogTown\Corpse.png" />
+    <Resource Include="Resources\HotdogTown\Diplomat.png" />
+    <Resource Include="Resources\HotdogTown\Journalist.png" />
+    <Resource Include="Resources\HotdogTown\Thug.png" />
+    <Resource Include="Resources\HotdogTown\Undertaker.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
